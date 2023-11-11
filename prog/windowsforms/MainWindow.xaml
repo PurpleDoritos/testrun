@@ -1,0 +1,43 @@
+﻿<Window x:Class="TaskManager.TaskViewModel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Task Manager" Height="450" Width="600">
+    <Grid>
+        <!-- Controls for tasks (DataGrid), adding, editing, and deleting tasks -->
+        <DataGrid x:Name="TasksDataGrid" ItemsSource="{Binding Tasks}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Task Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                <DataGridTextColumn Header="Category" Binding="{Binding Category}" />
+                <!-- This column is hidden, but is used to store the Id of the task -->
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Visibility="Hidden" />
+            </DataGrid.Columns>
+          </DataGrid>
+            <Button Content="Add Task" Click="AddTaskButton_Click" Margin="5"/>
+            <Button Content="Edit Task" Click="DeleteTaskButton_Click" Margin="5"/>
+            <Button Content="Delete Task" Click="SaveButton_Click" Margin="5"/>
+
+            
+        <!-- Controls for categories -->
+        <ComboBox x:Name="CategoryComboBox" ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedValuePath="Id" />
+        <Button Content="Add Category" Click="AddCategory_Click" />
+        <Button  Content="Edit Category" Click="EditCategory_Click" />
+        <Button  Content="Delete Category" Click="DeleteCategory_Click" />
+    
+      
+    
+
+        <!-- Buttons for Save, Load, Export -->
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="SaveButton" Content="Save" Click="SaveButton_Click" />
+            <Button x:Name="LoadButton" Content="Load" Click="LoadButton_Click" />
+             <Button x:Name="ExportMarkdownButton" Content="Export to Markdown" Click="ExportMarkdownButton_Click" />
+        </StackPanel>
+      </Grid>
+</Window>
+
+
+
